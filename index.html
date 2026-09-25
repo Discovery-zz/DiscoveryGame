@@ -2,353 +2,169 @@
 <html lang="ja">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Discovery Game</title>
+    <title>DiscoveryGame LIFF Test</title>
 
-
-    <!-- =========================
-         LINE LIFF SDK
-    ========================== -->
-
-    <script
-        src="https://static.line-scdn.net/liff/edge/2/sdk.js">
-    </script>
-
+    <!-- LINE LIFF SDK -->
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
     <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-
         body {
-
+            font-family: Arial, sans-serif;
             margin: 0;
-
-            padding: 20px;
-
-            min-height: 100vh;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            background: #f5f1e8;
-
-            font-family:
-                Arial,
-                "Noto Sans JP",
-                sans-serif;
-        }
-
-
-        .game {
-
-            width: 100%;
-
-            max-width: 400px;
-
             padding: 30px 20px;
-
-            text-align: center;
-
-            background: white;
-
-            border-radius: 20px;
-
-            box-shadow:
-                0 5px 25px
-                rgba(0, 0, 0, 0.12);
+            background: #f5f5f5;
         }
-
 
         h1 {
-
-            margin-top: 0;
-
-            margin-bottom: 10px;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-
-        #lineUser {
-
-            min-height: 24px;
-
-            margin:
-                10px 0 5px;
-
-            font-size: 16px;
-
-            font-weight: bold;
-        }
-
-
-        #liffStatus {
-
-            min-height: 20px;
-
-            margin-bottom: 15px;
-
-            color: #777;
-
-            font-size: 13px;
-        }
-
-
-        #number {
-
-            width: 180px;
-
-            height: 180px;
-
-            margin: 30px auto;
-
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-
-            border:
-                4px solid #222;
-
-            border-radius: 20px;
-
-
-            font-size: 70px;
-
-            font-weight: bold;
-
-
-            background: #fafafa;
-        }
-
-
-        button {
-
-            width: 100%;
-
-            height: 55px;
-
-            border: none;
-
+        .box {
+            background: white;
             border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
 
-
-            background: #222;
-
-            color: white;
-
-
-            font-size: 20px;
-
+        .title {
             font-weight: bold;
-
-
-            cursor: pointer;
-        }
-
-
-        button:active {
-
-            transform:
-                scale(0.98);
-        }
-
-
-        #message {
-
-            margin-top: 20px;
-
-            min-height: 24px;
-
+            margin-bottom: 10px;
             font-size: 16px;
         }
 
-
-        .score {
-
-            margin-top: 30px;
-
-            font-size: 20px;
-
-            font-weight: bold;
+        .value {
+            word-break: break-all;
+            line-height: 1.6;
         }
 
+        .success {
+            color: green;
+        }
 
+        .error {
+            color: red;
+        }
     </style>
-
 </head>
-
 
 <body>
 
+    <h1>DiscoveryGame</h1>
 
-<div class="game">
+    <!-- LIFF Status -->
+    <div class="box">
+        <div class="title">
+            LIFF Status
+        </div>
 
-
-    <!-- =========================
-         标题
-    ========================== -->
-
-    <h1>
-        Discovery Game
-    </h1>
-
-
-    <!-- =========================
-         LINE 用户名
-    ========================== -->
-
-    <p id="lineUser">
-
-        LINEに接続しています...
-
-    </p>
-
-
-    <!-- =========================
-         LIFF 状态
-    ========================== -->
-
-    <p id="liffStatus">
-
-        LIFFを初期化しています...
-
-    </p>
-
-
-    <!-- =========================
-         游戏说明
-    ========================== -->
-
-    <p>
-
-        数字を見つけよう！
-
-    </p>
-
-
-    <!-- =========================
-         数字
-    ========================== -->
-
-    <div id="number">
-
-        ?
-
+        <div id="liffStatus" class="value">
+            初期化中...
+        </div>
     </div>
 
 
-    <!-- =========================
-         START
-    ========================== -->
+    <!-- LINE User -->
+    <div class="box">
+        <div class="title">
+            LINE User
+        </div>
 
-    <button id="startButton">
-
-        START
-
-    </button>
-
-
-    <!-- =========================
-         消息
-    ========================== -->
-
-    <p id="message">
-
-        STARTを押してください
-
-    </p>
-
-
-    <!-- =========================
-         SCORE
-    ========================== -->
-
-    <div class="score">
-
-        SCORE：
-        <span id="score">0</span>
-
+        <div id="lineUser" class="value">
+            取得中...
+        </div>
     </div>
 
 
-</div>
+    <!-- Login Status -->
+    <div class="box">
+        <div class="title">
+            Login Status
+        </div>
+
+        <div id="loginStatus" class="value">
+            確認中...
+        </div>
+    </div>
+
+
+    <!-- Granted Permissions -->
+    <div class="box">
+        <div class="title">
+            Granted Permissions
+        </div>
+
+        <div id="permissions" class="value">
+            確認中...
+        </div>
+    </div>
+
+
+    <!-- LIFF Context -->
+    <div class="box">
+        <div class="title">
+            LIFF Context
+        </div>
+
+        <div id="context" class="value">
+            確認中...
+        </div>
+    </div>
+
+
+    <!-- Error -->
+    <div class="box">
+        <div class="title">
+            Error
+        </div>
+
+        <div id="error" class="value">
+            なし
+        </div>
+    </div>
 
 
 <script>
 
-
-    // ==================================================
-    // LIFF 设置
-    // ==================================================
+    // ==========================================
+    // LIFF ID
+    // ==========================================
 
     const LIFF_ID = "2011739996";
 
 
-    // ==================================================
-    // 游戏变量
-    // ==================================================
-
-    let score = 0;
-
-
-    // ==================================================
-    // 获取 HTML 元素
-    // ==================================================
-
-    const numberElement =
-        document.getElementById(
-            "number"
-        );
-
-
-    const startButton =
-        document.getElementById(
-            "startButton"
-        );
-
-
-    const messageElement =
-        document.getElementById(
-            "message"
-        );
-
-
-    const scoreElement =
-        document.getElementById(
-            "score"
-        );
-
-
-    const lineUserElement =
-        document.getElementById(
-            "lineUser"
-        );
-
+    // ==========================================
+    // HTML Elements
+    // ==========================================
 
     const liffStatusElement =
-        document.getElementById(
-            "liffStatus"
-        );
+        document.getElementById("liffStatus");
+
+    const lineUserElement =
+        document.getElementById("lineUser");
+
+    const loginStatusElement =
+        document.getElementById("loginStatus");
+
+    const permissionsElement =
+        document.getElementById("permissions");
+
+    const contextElement =
+        document.getElementById("context");
+
+    const errorElement =
+        document.getElementById("error");
 
 
-    // ==================================================
-    // 页面加载
-    // ==================================================
+    // ==========================================
+    // Start
+    // ==========================================
 
     window.addEventListener(
         "load",
@@ -356,161 +172,259 @@
     );
 
 
-    // ==================================================
-    // 初始化 LIFF
-    // ==================================================
+    // ==========================================
+    // LIFF Initialization
+    // ==========================================
 
     async function initializeLIFF() {
 
         try {
 
+            console.log("================================");
+            console.log("LIFF START");
+            console.log("LIFF ID:", LIFF_ID);
+            console.log("================================");
+
+
+            // ----------------------------------
+            // 1. LIFF Initialize
+            // ----------------------------------
+
             liffStatusElement.textContent =
                 "LIFFを初期化しています...";
 
-
-            // ------------------------------------------
-            // 初始化 LIFF
-            // ------------------------------------------
-
             await liff.init({
-
                 liffId: LIFF_ID
-
             });
 
-
             console.log(
-                "LIFF initialized"
+                "LIFF initialized successfully"
             );
 
+            liffStatusElement.textContent =
+                "LIFF初期化OK";
 
-            // ------------------------------------------
-            // 判断登录状态
-            // ------------------------------------------
-
-            if (!liff.isLoggedIn()) {
-
-                liffStatusElement.textContent =
-                    "LINEにログインしています...";
+            liffStatusElement.className =
+                "value success";
 
 
-                liff.login();
+            // ----------------------------------
+            // 2. Login Status
+            // ----------------------------------
 
-                return;
+            const loggedIn =
+                liff.isLoggedIn();
+
+            console.log(
+                "isLoggedIn:",
+                loggedIn
+            );
+
+            if (loggedIn) {
+
+                loginStatusElement.textContent =
+                    "ログイン済み";
+
+                loginStatusElement.className =
+                    "value success";
+
+            } else {
+
+                loginStatusElement.textContent =
+                    "ログインしていません";
+
+                loginStatusElement.className =
+                    "value error";
             }
 
 
-            // ------------------------------------------
-            // 获取 LINE 用户资料
-            // ------------------------------------------
+            // ----------------------------------
+            // 3. LIFF Context
+            // ----------------------------------
 
-            const profile =
-                await liff.getProfile();
+            try {
+
+                const context =
+                    liff.getContext();
+
+                console.log(
+                    "LIFF Context:",
+                    context
+                );
+
+                if (context) {
+
+                    contextElement.textContent =
+                        JSON.stringify(
+                            context,
+                            null,
+                            2
+                        );
+
+                } else {
+
+                    contextElement.textContent =
+                        "Context is null";
+                }
+
+            } catch (contextError) {
+
+                console.error(
+                    "getContext error:",
+                    contextError
+                );
+
+                contextElement.textContent =
+                    "Context取得エラー: " +
+                    contextError.message;
+            }
 
 
-            console.log(
-                "LINE User ID:",
-                profile.userId
-            );
+            // ----------------------------------
+            // 4. Granted Permissions
+            // ----------------------------------
+
+            try {
+
+                const permissions =
+                    await liff.permission.getGrantedAll();
+
+                console.log(
+                    "Granted permissions:",
+                    permissions
+                );
+
+                if (
+                    permissions &&
+                    permissions.length > 0
+                ) {
+
+                    permissionsElement.textContent =
+                        permissions.join(", ");
+
+                } else {
+
+                    permissionsElement.textContent =
+                        "許可された権限なし";
+                }
+
+            } catch (permissionError) {
+
+                console.error(
+                    "Permission error:",
+                    permissionError
+                );
+
+                permissionsElement.textContent =
+                    "Permission取得エラー: " +
+                    (
+                        permissionError.message ||
+                        permissionError
+                    );
+            }
 
 
-            console.log(
-                "LINE Display Name:",
-                profile.displayName
-            );
+            // ----------------------------------
+            // 5. Get LINE Profile
+            // ----------------------------------
+
+            try {
+
+                console.log(
+                    "Getting LINE profile..."
+                );
+
+                const profile =
+                    await liff.getProfile();
+
+                console.log(
+                    "LINE Profile:",
+                    profile
+                );
 
 
-            // ------------------------------------------
-            // 显示用户名称
-            // ------------------------------------------
+                // Display Name
+                lineUserElement.innerHTML =
+                    "Display Name: " +
+                    profile.displayName +
+                    "<br><br>" +
 
-            lineUserElement.textContent =
-                "こんにちは、" +
-                profile.displayName +
-                "さん！";
+                    "User ID: " +
+                    profile.userId;
+
+                lineUserElement.className =
+                    "value success";
 
 
-            liffStatusElement.textContent =
-                "LINE接続OK";
+            } catch (profileError) {
+
+                console.error(
+                    "getProfile error:",
+                    profileError
+                );
+
+                lineUserElement.textContent =
+                    "Profile取得失敗";
+
+                lineUserElement.className =
+                    "value error";
+
+
+                errorElement.textContent =
+                    "Code: " +
+                    (
+                        profileError.code ||
+                        "unknown"
+                    ) +
+                    " / Message: " +
+                    (
+                        profileError.message ||
+                        profileError
+                    );
+
+                errorElement.className =
+                    "value error";
+            }
 
 
         } catch (error) {
 
+            // ==================================
+            // LIFF Initialization Error
+            // ==================================
 
             console.error(
-                "LIFF Error:",
+                "LIFF initialization error:",
                 error
             );
 
 
-            lineUserElement.textContent =
-                "LINEユーザー情報を取得できませんでした";
-
-
             liffStatusElement.textContent =
-                "LIFF Error";
+                "LIFF初期化失敗";
+
+            liffStatusElement.className =
+                "value error";
 
 
-            messageElement.textContent =
-                "LIFFの初期化に失敗しました";
+            errorElement.textContent =
+                "Code: " +
+                (
+                    error.code ||
+                    "unknown"
+                ) +
+                " / Message: " +
+                (
+                    error.message ||
+                    error
+                );
 
+            errorElement.className =
+                "value error";
         }
 
     }
 
-
-    // ==================================================
-    // START 按钮
-    // ==================================================
-
-    startButton.addEventListener(
-        "click",
-        function() {
-
-
-            // ------------------------------------------
-            // 生成 1～100 的随机数字
-            // ------------------------------------------
-
-            const randomNumber =
-
-                Math.floor(
-                    Math.random() * 100
-                ) + 1;
-
-
-            // ------------------------------------------
-            // 显示数字
-            // ------------------------------------------
-
-            numberElement.textContent =
-                randomNumber;
-
-
-            // ------------------------------------------
-            // 加分
-            // ------------------------------------------
-
-            score += 10;
-
-
-            scoreElement.textContent =
-                score;
-
-
-            // ------------------------------------------
-            // 消息
-            // ------------------------------------------
-
-            messageElement.textContent =
-                "ナイス！ +10 POINT";
-
-        }
-    );
-
-
 </script>
-
 
 </body>
 
