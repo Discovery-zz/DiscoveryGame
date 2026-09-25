@@ -10,13 +10,24 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>時代を見破れ！</title>
+    <title>Discovery Game</title>
+
+
+    <!-- =========================
+         LINE LIFF SDK
+    ========================== -->
+
+    <script
+        src="https://static.line-scdn.net/liff/edge/2/sdk.js">
+    </script>
+
 
     <style>
 
         * {
             box-sizing: border-box;
         }
+
 
         body {
 
@@ -32,11 +43,7 @@
 
             align-items: center;
 
-            background:
-                linear-gradient(
-                    #d8c7a8,
-                    #eee2c8
-                );
+            background: #f5f1e8;
 
             font-family:
                 Arial,
@@ -45,407 +52,40 @@
         }
 
 
-        /* =========================
-           游戏整体
-        ========================= */
-
         .game {
 
             width: 100%;
 
-            max-width: 500px;
+            max-width: 400px;
 
-            background: #fff;
+            padding: 30px 20px;
 
-            padding: 20px;
+            text-align: center;
+
+            background: white;
 
             border-radius: 20px;
 
             box-shadow:
-                0 8px 30px
-                rgba(0, 0, 0, 0.15);
-
-            text-align: center;
+                0 5px 25px
+                rgba(0, 0, 0, 0.12);
         }
 
-
-        /* =========================
-           标题
-        ========================= */
 
         h1 {
 
-            margin:
-                0 0 5px 0;
-
-            font-size: 28px;
-        }
-
-
-        .subtitle {
-
             margin-top: 0;
 
-            color: #666;
-
-            font-size: 14px;
+            margin-bottom: 10px;
         }
 
 
-        /* =========================
-           信息栏
-        ========================= */
+        #lineUser {
 
-        .info {
+            min-height: 24px;
 
-            display: flex;
-
-            justify-content: space-between;
-
-            margin: 15px 0;
-
-            padding: 10px 15px;
-
-            background: #f3f3f3;
-
-            border-radius: 10px;
-
-            font-weight: bold;
-        }
-
-
-        /* =========================
-           游戏场景
-        ========================= */
-
-        #scene {
-
-            position: relative;
-
-            width: 100%;
-
-            height: 330px;
-
-            overflow: hidden;
-
-            border-radius: 15px;
-
-            border:
-                4px solid #6b5845;
-
-            background:
-                #d7c5a5;
-
-            user-select: none;
-        }
-
-
-        /* 天空 */
-
-        .sky {
-
-            position: absolute;
-
-            left: 0;
-
-            top: 0;
-
-            width: 100%;
-
-            height: 55%;
-
-            background:
-                linear-gradient(
-                    #b8d0d8,
-                    #e7dcc4
-                );
-        }
-
-
-        /* 地面 */
-
-        .ground {
-
-            position: absolute;
-
-            left: 0;
-
-            bottom: 0;
-
-            width: 100%;
-
-            height: 45%;
-
-            background:
-                repeating-linear-gradient(
-                    0deg,
-                    #8c8170 0px,
-                    #8c8170 8px,
-                    #817666 8px,
-                    #817666 16px
-                );
-        }
-
-
-        /* =========================
-           建筑物
-        ========================= */
-
-        .building {
-
-            position: absolute;
-
-            left: 20px;
-
-            bottom: 120px;
-
-            width: 150px;
-
-            height: 150px;
-
-            background: #b65f42;
-
-            border:
-                3px solid #70402e;
-        }
-
-
-        .building-roof {
-
-            position: absolute;
-
-            left: -15px;
-
-            top: -25px;
-
-            width: 180px;
-
-            height: 30px;
-
-            background: #4b4038;
-
-            border-radius: 5px;
-        }
-
-
-        .window {
-
-            position: absolute;
-
-            width: 35px;
-
-            height: 45px;
-
-            background: #d8c98d;
-
-            border:
-                3px solid #593e32;
-        }
-
-
-        .window1 {
-
-            left: 20px;
-
-            top: 30px;
-        }
-
-
-        .window2 {
-
-            right: 20px;
-
-            top: 30px;
-        }
-
-
-        .door {
-
-            position: absolute;
-
-            left: 58px;
-
-            bottom: 0;
-
-            width: 40px;
-
-            height: 70px;
-
-            background: #543b30;
-        }
-
-
-        /* =========================
-           电线杆
-        ========================= */
-
-        .pole {
-
-            position: absolute;
-
-            right: 60px;
-
-            bottom: 100px;
-
-            width: 10px;
-
-            height: 190px;
-
-            background: #4c443e;
-        }
-
-
-        .pole-top {
-
-            position: absolute;
-
-            right: 40px;
-
-            top: 40px;
-
-            width: 60px;
-
-            height: 8px;
-
-            background: #4c443e;
-        }
-
-
-        /* =========================
-           自行车
-        ========================= */
-
-        .bicycle {
-
-            position: absolute;
-
-            left: 205px;
-
-            bottom: 45px;
-
-            width: 80px;
-
-            height: 70px;
-        }
-
-
-        .wheel {
-
-            position: absolute;
-
-            bottom: 0;
-
-            width: 35px;
-
-            height: 35px;
-
-            border:
-                4px solid #222;
-
-            border-radius: 50%;
-        }
-
-
-        .wheel1 {
-
-            left: 0;
-        }
-
-
-        .wheel2 {
-
-            right: 0;
-        }
-
-
-        .bike-frame {
-
-            position: absolute;
-
-            left: 17px;
-
-            top: 20px;
-
-            width: 45px;
-
-            height: 25px;
-
-            border:
-                4px solid #333;
-
-            transform:
-                skew(-20deg);
-        }
-
-
-        /* =========================
-           人
-        ========================= */
-
-        .person {
-
-            position: absolute;
-
-            right: 120px;
-
-            bottom: 55px;
-
-            font-size: 50px;
-        }
-
-
-        /* =========================
-           手机
-        ========================= */
-
-        .smartphone {
-
-            position: absolute;
-
-            right: 25px;
-
-            bottom: 65px;
-
-            width: 55px;
-
-            height: 90px;
-
-            background: #111;
-
-            border:
-                4px solid #333;
-
-            border-radius: 9px;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            font-size: 30px;
-
-            cursor: pointer;
-
-            transition:
-                transform 0.15s;
-        }
-
-
-        .smartphone:hover {
-
-            transform:
-                scale(1.08);
-        }
-
-
-        /* =========================
-           点击提示
-        ========================= */
-
-        .hint {
-
-            margin-top: 15px;
+            margin:
+                10px 0 5px;
 
             font-size: 16px;
 
@@ -453,35 +93,48 @@
         }
 
 
-        /* =========================
-           结果
-        ========================= */
+        #liffStatus {
 
-        #result {
+            min-height: 20px;
 
-            display: none;
+            margin-bottom: 15px;
 
-            margin-top: 20px;
+            color: #777;
 
-            padding: 20px;
-
-            background: #f5f0e5;
-
-            border-radius: 15px;
+            font-size: 13px;
         }
 
 
-        #result h2 {
+        #number {
 
-            margin-top: 0;
+            width: 180px;
 
-            font-size: 28px;
+            height: 180px;
+
+            margin: 30px auto;
+
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+
+            border:
+                4px solid #222;
+
+            border-radius: 20px;
+
+
+            font-size: 70px;
+
+            font-weight: bold;
+
+
+            background: #fafafa;
         }
 
-
-        /* =========================
-           按钮
-        ========================= */
 
         button {
 
@@ -489,19 +142,20 @@
 
             height: 55px;
 
-            margin-top: 15px;
-
             border: none;
 
             border-radius: 10px;
+
 
             background: #222;
 
             color: white;
 
-            font-size: 18px;
+
+            font-size: 20px;
 
             font-weight: bold;
+
 
             cursor: pointer;
         }
@@ -514,98 +168,25 @@
         }
 
 
-        /* =========================
-           错误提示
-        ========================= */
-
         #message {
 
-            min-height: 25px;
+            margin-top: 20px;
 
-            margin: 10px 0 0;
+            min-height: 24px;
+
+            font-size: 16px;
+        }
+
+
+        .score {
+
+            margin-top: 30px;
+
+            font-size: 20px;
 
             font-weight: bold;
         }
 
-
-        .wrong {
-
-            animation:
-                shake 0.25s;
-        }
-
-
-        @keyframes shake {
-
-            0% {
-                transform: translateX(0);
-            }
-
-            25% {
-                transform: translateX(-8px);
-            }
-
-            50% {
-                transform: translateX(8px);
-            }
-
-            75% {
-                transform: translateX(-8px);
-            }
-
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-
-        /* =========================
-           手机适配
-        ========================= */
-
-        @media (max-width: 400px) {
-
-            .game {
-
-                padding: 15px;
-            }
-
-            #scene {
-
-                height: 280px;
-            }
-
-            .building {
-
-                transform:
-                    scale(0.8);
-
-                transform-origin:
-                    bottom left;
-            }
-
-            .person {
-
-                right: 90px;
-
-                font-size: 40px;
-            }
-
-            .bicycle {
-
-                left: 150px;
-
-                transform:
-                    scale(0.8);
-            }
-
-            .smartphone {
-
-                right: 18px;
-
-                bottom: 55px;
-            }
-        }
 
     </style>
 
@@ -617,127 +198,90 @@
 
 <div class="game">
 
-    <h1>時代を見破れ！</h1>
 
-    <p class="subtitle">
-        昭和の街に「ありえない物」が1つあります
+    <!-- =========================
+         标题
+    ========================== -->
+
+    <h1>
+        Discovery Game
+    </h1>
+
+
+    <!-- =========================
+         LINE 用户名
+    ========================== -->
+
+    <p id="lineUser">
+
+        LINEに接続しています...
+
     </p>
 
 
-    <!-- 游戏信息 -->
+    <!-- =========================
+         LIFF 状态
+    ========================== -->
 
-    <div class="info">
+    <p id="liffStatus">
 
-        <div>
-            STAGE：1
-        </div>
+        LIFFを初期化しています...
 
-        <div>
-            SCORE：
-            <span id="score">0</span>
-        </div>
+    </p>
+
+
+    <!-- =========================
+         游戏说明
+    ========================== -->
+
+    <p>
+
+        数字を見つけよう！
+
+    </p>
+
+
+    <!-- =========================
+         数字
+    ========================== -->
+
+    <div id="number">
+
+        ?
 
     </div>
 
 
-    <!-- 游戏场景 -->
+    <!-- =========================
+         START
+    ========================== -->
 
-    <div id="scene">
+    <button id="startButton">
 
-        <!-- 天空 -->
+        START
 
-        <div class="sky"></div>
-
-
-        <!-- 建筑 -->
-
-        <div class="building">
-
-            <div class="building-roof"></div>
-
-            <div class="window window1"></div>
-
-            <div class="window window2"></div>
-
-            <div class="door"></div>
-
-        </div>
+    </button>
 
 
-        <!-- 电线杆 -->
-
-        <div class="pole">
-
-            <div class="pole-top"></div>
-
-        </div>
-
-
-        <!-- 自行车 -->
-
-        <div class="bicycle">
-
-            <div class="wheel wheel1"></div>
-
-            <div class="wheel wheel2"></div>
-
-            <div class="bike-frame"></div>
-
-        </div>
-
-
-        <!-- 人 -->
-
-        <div class="person">
-            🧑
-        </div>
-
-
-        <!-- 手机 -->
-
-        <div
-            id="smartphone"
-            class="smartphone"
-            title="スマートフォン"
-        >
-            📱
-        </div>
-
-
-        <!-- 地面 -->
-
-        <div class="ground"></div>
-
-    </div>
-
-
-    <p class="hint">
-        この時代に存在しない物をタップしてください
-    </p>
-
+    <!-- =========================
+         消息
+    ========================== -->
 
     <p id="message">
-        どこかに「時代違い」の物があります…
+
+        STARTを押してください
+
     </p>
 
 
-    <!-- 重新开始 -->
+    <!-- =========================
+         SCORE
+    ========================== -->
 
-    <div id="result">
+    <div class="score">
 
-        <h2>正解！🎉</h2>
-
-        <p>
-            スマートフォンは昭和時代には存在しません。
-        </p>
-
-        <p>
-            +100 POINT
-        </p>
-
-        <button id="restartButton">
-            もう一度プレイ
-        </button>
+        SCORE：
+        <span id="score">0</span>
 
     </div>
 
@@ -748,170 +292,218 @@
 <script>
 
 
-    // =========================
+    // ==================================================
+    // LIFF 设置
+    // ==================================================
+
+    const LIFF_ID = "2011739996";
+
+
+    // ==================================================
     // 游戏变量
-    // =========================
+    // ==================================================
 
     let score = 0;
 
-    let gameFinished = false;
 
-
-    // =========================
+    // ==================================================
     // 获取 HTML 元素
-    // =========================
+    // ==================================================
 
-    const smartphone =
-        document.getElementById("smartphone");
+    const numberElement =
+        document.getElementById(
+            "number"
+        );
 
-    const scene =
-        document.getElementById("scene");
 
-    const message =
-        document.getElementById("message");
+    const startButton =
+        document.getElementById(
+            "startButton"
+        );
+
+
+    const messageElement =
+        document.getElementById(
+            "message"
+        );
+
 
     const scoreElement =
-        document.getElementById("score");
-
-    const result =
-        document.getElementById("result");
-
-    const restartButton =
-        document.getElementById("restartButton");
+        document.getElementById(
+            "score"
+        );
 
 
-    // =========================
-    // 点击手机
-    // =========================
-
-    smartphone.addEventListener(
-        "click",
-        function(event) {
-
-            // 防止点击事件传到场景
-            event.stopPropagation();
+    const lineUserElement =
+        document.getElementById(
+            "lineUser"
+        );
 
 
-            if (gameFinished) {
+    const liffStatusElement =
+        document.getElementById(
+            "liffStatus"
+        );
+
+
+    // ==================================================
+    // 页面加载
+    // ==================================================
+
+    window.addEventListener(
+        "load",
+        initializeLIFF
+    );
+
+
+    // ==================================================
+    // 初始化 LIFF
+    // ==================================================
+
+    async function initializeLIFF() {
+
+        try {
+
+            liffStatusElement.textContent =
+                "LIFFを初期化しています...";
+
+
+            // ------------------------------------------
+            // 初始化 LIFF
+            // ------------------------------------------
+
+            await liff.init({
+
+                liffId: LIFF_ID
+
+            });
+
+
+            console.log(
+                "LIFF initialized"
+            );
+
+
+            // ------------------------------------------
+            // 判断登录状态
+            // ------------------------------------------
+
+            if (!liff.isLoggedIn()) {
+
+                liffStatusElement.textContent =
+                    "LINEにログインしています...";
+
+
+                liff.login();
 
                 return;
             }
 
 
-            // 正确答案
+            // ------------------------------------------
+            // 获取 LINE 用户资料
+            // ------------------------------------------
 
-            score += 100;
-
-            scoreElement.textContent =
-                score;
-
-
-            message.textContent =
-                "正解！スマートフォンは昭和にはありません！";
+            const profile =
+                await liff.getProfile();
 
 
-            message.style.color =
-                "#008000";
-
-
-            gameFinished = true;
-
-
-            // 显示结果
-
-            result.style.display =
-                "block";
-
-
-            // 手机消失
-
-            smartphone.style.display =
-                "none";
-        }
-    );
-
-
-    // =========================
-    // 点击其他地方
-    // =========================
-
-    scene.addEventListener(
-        "click",
-        function() {
-
-            if (gameFinished) {
-
-                return;
-            }
-
-
-            // 错误
-
-            score -= 20;
-
-            scoreElement.textContent =
-                score;
-
-
-            message.textContent =
-                "違います！もう一度探してください。";
-
-
-            message.style.color =
-                "#d00000";
-
-
-            // 摇晃效果
-
-            scene.classList.remove(
-                "wrong"
+            console.log(
+                "LINE User ID:",
+                profile.userId
             );
 
 
-            // 强制重新触发动画
-
-            void scene.offsetWidth;
-
-
-            scene.classList.add(
-                "wrong"
+            console.log(
+                "LINE Display Name:",
+                profile.displayName
             );
 
+
+            // ------------------------------------------
+            // 显示用户名称
+            // ------------------------------------------
+
+            lineUserElement.textContent =
+                "こんにちは、" +
+                profile.displayName +
+                "さん！";
+
+
+            liffStatusElement.textContent =
+                "LINE接続OK";
+
+
+        } catch (error) {
+
+
+            console.error(
+                "LIFF Error:",
+                error
+            );
+
+
+            lineUserElement.textContent =
+                "LINEユーザー情報を取得できませんでした";
+
+
+            liffStatusElement.textContent =
+                "LIFF Error";
+
+
+            messageElement.textContent =
+                "LIFFの初期化に失敗しました";
+
         }
-    );
+
+    }
 
 
-    // =========================
-    // 重新开始
-    // =========================
+    // ==================================================
+    // START 按钮
+    // ==================================================
 
-    restartButton.addEventListener(
+    startButton.addEventListener(
         "click",
         function() {
 
-            score = 0;
+
+            // ------------------------------------------
+            // 生成 1～100 的随机数字
+            // ------------------------------------------
+
+            const randomNumber =
+
+                Math.floor(
+                    Math.random() * 100
+                ) + 1;
+
+
+            // ------------------------------------------
+            // 显示数字
+            // ------------------------------------------
+
+            numberElement.textContent =
+                randomNumber;
+
+
+            // ------------------------------------------
+            // 加分
+            // ------------------------------------------
+
+            score += 10;
+
 
             scoreElement.textContent =
                 score;
 
 
-            gameFinished = false;
+            // ------------------------------------------
+            // 消息
+            // ------------------------------------------
 
-
-            message.textContent =
-                "どこかに「時代違い」の物があります…";
-
-
-            message.style.color =
-                "#222";
-
-
-            smartphone.style.display =
-                "flex";
-
-
-            result.style.display =
-                "none";
+            messageElement.textContent =
+                "ナイス！ +10 POINT";
 
         }
     );
